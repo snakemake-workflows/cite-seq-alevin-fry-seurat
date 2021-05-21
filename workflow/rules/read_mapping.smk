@@ -24,8 +24,9 @@ rule salmon_alevin:
         "logs/salmon-alevin/{sample}.log",
     conda:
         "../envs/salmon.yaml"
+    threads: 16
     shell:
-        "salmon alevin "
+        "salmon alevin --threads {threads} "
         "-l ISR -i {input.index} -1 {input.fq1} -2 {input.fq2} "
         "--read-geometry {params.sample[geometry][reads]} --bc-geometry {params.sample[geometry][barcodes]} "
         "--umi-geometry {params.sample[geometry][umis]} -o {output} --sketch -p 16 "
