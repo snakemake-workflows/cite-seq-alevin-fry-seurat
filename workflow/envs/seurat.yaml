@@ -1,0 +1,8 @@
+channels:
+  - bioconda
+  - conda-forge
+dependencies:
+  - r-seurat =4.0
+  - r-devtools =2.0
+  - r-ggplot2 =3.3
+  - bioconductor-singlecellexperiment =1.12

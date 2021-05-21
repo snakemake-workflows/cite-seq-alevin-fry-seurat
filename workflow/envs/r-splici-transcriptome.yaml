@@ -1,0 +1,11 @@
+channels:
+  - bioconda  
+  - conda-forge
+dependencies:
+  - bioconductor-biostrings =2.58
+  - bioconductor-eisar =1.2
+  - bioconductor-bsgenome =1.58
+  - r-stringr =1.4
+  - jupyterlab_code_formatter =1.4
+  - r-irkernel =0.8
+  - jupyter =1.0

@@ -1,0 +1,6 @@
+channels:
+  - conda-forge
+dependencies:
+  - curl =7.76
+  - gawk =5.1
+  - tar =1.34
