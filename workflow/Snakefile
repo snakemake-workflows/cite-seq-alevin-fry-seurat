@@ -7,4 +7,4 @@ include: "rules/analysis.smk"
 
 rule all:
     input:
-        get_targets()
+        get_targets(),

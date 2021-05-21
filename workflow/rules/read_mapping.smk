@@ -1,13 +1,13 @@
 rule salmon_index:
     input:
-        get_reference
+        get_reference,
     output:
-        directory("resources/salmon-index/{sample}")
+        directory("resources/salmon-index/{sample}"),
     log:
-        "logs/salmon-index/{ref}.log"
+        "logs/salmon-index/{ref}.log",
     threads: 2
     params:
-        extra="--features -k7"
+        extra="--features -k7",
     wrapper:
         "0.74.0/bio/salmon/index"
 
@@ -17,11 +17,11 @@ rule salmon_alevin:
         unpack(get_reads),
         index=get_salmon_index,
     output:
-        directory("results/salmon-alevin/{sample}")
+        directory("results/salmon-alevin/{sample}"),
     params:
-        unit=get_unit
+        unit=get_unit,
     log:
-        "logs/salmon-alevin/{sample}-{type}.log"
+        "logs/salmon-alevin/{sample}-{type}.log",
     conda:
         "../envs/salmon.yaml"
     shell:
@@ -34,11 +34,11 @@ rule salmon_alevin:
 
 rule alevin_fry_preprocess:
     input:
-        "results/salmon-alevin/{sample}"
+        "results/salmon-alevin/{sample}",
     output:
-        directory("results/alevin-fry/rad/{sample}")
+        directory("results/alevin-fry/rad/{sample}"),
     log:
-        "logs/alevin-fry/rad/{sample}.log"
+        "logs/alevin-fry/rad/{sample}.log",
     conda:
         "../envs/alevin-fry.yaml"
     threads: 16
@@ -51,11 +51,11 @@ rule alevin_fry_preprocess:
 rule alevin_fry_quant:
     input:
         rad="results/alevin-fry/rad/{sample}",
-        t2g="resources/reference/{sample}/t2g.tsv"
+        t2g="resources/reference/{sample}/t2g.tsv",
     output:
-        directory("results/alevin-fry/quant/{sample}")
+        directory("results/alevin-fry/quant/{sample}"),
     log:
-        "logs/alevin-fry/quant/{sample}.log"
+        "logs/alevin-fry/quant/{sample}.log",
     conda:
         "../envs/alevin-fry.yaml"
     threads: 16

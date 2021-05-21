@@ -12,7 +12,10 @@ def get_reads(wildcards):
     if "fq1" in sample and "fq2" in sample:
         return {"fq1": sample["fq1"], "fq2": sample["fq2"]}
     else:
-        return {"fq1": f"resources/sra/{sample[sra]}_1.fastq", "fq2": f"resources/sra/{sample[sra]}_2.fastq"}
+        return {
+            "fq1": f"resources/sra/{sample[sra]}_1.fastq",
+            "fq2": f"resources/sra/{sample[sra]}_2.fastq",
+        }
 
 
 def get_salmon_index(wildcards):

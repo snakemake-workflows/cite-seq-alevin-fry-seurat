@@ -3,11 +3,11 @@ rule seurat:
         rna="results/alevin-fry/quant/rna",
         adt="results/alevin-fry/quant/adt",
         hto="results/alevin-fry/quant/hto",
-        geneid2name="resources/reference/geneid2name.tsv"
+        geneid2name="resources/reference/geneid2name.tsv",
     output:
-        "results/seurat/{sample}.all.rds"
+        "results/seurat/{sample}.all.rds",
     log:
-        "logs/seurat/{sample}.log"
+        "logs/seurat/{sample}.log",
     conda:
         "../envs/seurat.yaml"
     script:
@@ -16,11 +16,11 @@ rule seurat:
 
 rule plot_initial_hto_counts:
     input:
-        "results/seurat/all.rds"
+        "results/seurat/all.rds",
     output:
-        "results/plots/hto-counts.initial.pdf"
+        "results/plots/hto-counts.initial.pdf",
     log:
-        "logs/plot-hto-counts-initial.log"
+        "logs/plot-hto-counts-initial.log",
     conda:
         "../envs/seurat.yaml"
     script:
@@ -29,13 +29,13 @@ rule plot_initial_hto_counts:
 
 rule filter_normalize_demux:
     input:
-        "results/seurat/all.rds"
+        "results/seurat/all.rds",
     output:
-        "results/seurat/hto-filtered.rds"
+        "results/seurat/hto-filtered.rds",
     params:
-        max_hto_count=config["thresholds"]["max-hto-count"]
+        max_hto_count=config["thresholds"]["max-hto-count"],
     log:
-        "logs/filter-normalize-demux.log"
+        "logs/filter-normalize-demux.log",
     conda:
         "../envs/seurat.yaml"
     script:
@@ -44,12 +44,12 @@ rule filter_normalize_demux:
 
 rule plot_counts_hto_filtered:
     input:
-        "results/seurat/hto-filtered.rds"
+        "results/seurat/hto-filtered.rds",
     output:
         hto="results/plots/hto-counts.pdf",
         rna="results/plots/rna-counts.pdf",
     log:
-        "logs/plot-counts-hto-filtered.log"
+        "logs/plot-counts-hto-filtered.log",
     conda:
         "../envs/seurat.yaml"
     script:
@@ -58,11 +58,11 @@ rule plot_counts_hto_filtered:
 
 rule filter_negatives:
     input:
-        "results/seurat/hto-filtered.rds"
+        "results/seurat/hto-filtered.rds",
     output:
-        "results/seurat/non-negatives.rds"
+        "results/seurat/non-negatives.rds",
     log:
-        "logs/fitler-negatives.log"
+        "logs/fitler-negatives.log",
     conda:
         "../envs/seurat.yaml"
     script:
@@ -71,12 +71,12 @@ rule filter_negatives:
 
 rule plot_umap_singlets_doublets:
     input:
-        "results/seurat/non-negatives.rds"
+        "results/seurat/non-negatives.rds",
     output:
         by_xlet="results/plots/umap-singlets-doublets.col~xlet.pdf",
         by_hashtag="results/plots/umap-singlets-doublets.col~hashtag.pdf",
     log:
-        "logs/plot-umap-singlets-doublets.log"
+        "logs/plot-umap-singlets-doublets.log",
     conda:
         "../envs/seurat.yaml"
     script:
@@ -85,10 +85,10 @@ rule plot_umap_singlets_doublets:
 
 rule filter_to_singlets:
     input:
-        "results/seurat/non-negatives.rds"
+        "results/seurat/non-negatives.rds",
     output:
         rds="results/seurat/singlets.rds",
-        pdf="results/plots/adt-counts.pdf"
+        pdf="results/plots/adt-counts.pdf",
     conda:
         "../envs/seurat.yaml"
     script:
