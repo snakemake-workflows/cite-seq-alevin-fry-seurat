@@ -5,9 +5,9 @@ rule seurat:
         hto="results/alevin-fry/quant/hto",
         geneid2name="resources/reference/geneid2name.tsv",
     output:
-        "results/seurat/{sample}.all.rds",
+        "results/seurat/all.rds",
     log:
-        "logs/seurat/{sample}.log",
+        "logs/seurat.log",
     conda:
         "../envs/seurat.yaml"
     script:

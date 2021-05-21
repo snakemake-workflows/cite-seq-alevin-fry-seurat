@@ -9,21 +9,19 @@ def get_reference(wildcards):
 
 def get_reads(wildcards):
     sample = config["samples"][wildcards.sample]
+    print(sample)
     if "fq1" in sample and "fq2" in sample:
         return {"fq1": sample["fq1"], "fq2": sample["fq2"]}
     else:
+        accession = sample["sra"]
         return {
-            "fq1": f"resources/sra/{sample[sra]}_1.fastq",
-            "fq2": f"resources/sra/{sample[sra]}_2.fastq",
+            "fq1": f"resources/sra/{accession}_1.fastq",
+            "fq2": f"resources/sra/{accession}_2.fastq",
         }
 
 
-def get_salmon_index(wildcards):
-    return f"resources/salmon-index/{get_unit_type(wildcards)}"
-
-
-def get_unit_type(wildcards):
-    return get_unit(wildcards)["type"]
+def get_sample(wildcards):
+    return config["samples"][wildcards.sample]
 
 
 def get_targets():

@@ -59,11 +59,11 @@ rule spoof_t2g:
     input:
         get_reference,
     output:
-        "resources/reference/{type}/t2g.tsv",
+        "resources/reference/{sample}/t2g.tsv",
     log:
-        "logs/spoof-t2g/{type}.log",
+        "logs/spoof-t2g/{sample}.log",
     wildcard_constraints:
-        type="adt|hto",
+        sample="adt|hto",
     conda:
         "../envs/unix.yaml"
     shell:

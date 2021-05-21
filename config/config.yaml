@@ -1,0 +1,47 @@
+reference:
+  species: homo_sapiens
+  build: GRCh38
+  # ensembl release
+  release: 100
+
+samples:
+  rna:
+    # either specify sra: <accession>, or fq1: <path> and fq2: <path>
+    sra: SRR8758323
+    # denote read geometry as expected by salmon alevin
+    geometry:
+      reads: "2[1-end]"
+      barcodes: "1[1-16]"
+      umis: "1[17-26]"
+  adt:
+    # either specify sra: <accession>, or fq1: <path> and fq2: <path>
+    sra: SRR8758325
+    # denote read geometry as expected by salmon alevin
+    geometry:
+      reads: "2[1-15]"
+      barcodes: "1[1-16]"
+      umis: "1[17-26]"
+  hto:
+    # either specify sra: <accession>, or fq1: <path> and fq2: <path>
+    sra: SRR8758327
+    # denote read geometry as expected by salmon alevin
+    geometry:
+      reads: "2[1-15]"
+      barcodes: "1[1-16]"
+      umis: "1[17-26]"
+
+antibodies:
+  adt-seqs: data/adt.tsv
+  hto-seqs: data/hto.tsv
+
+thresholds:
+  # After the first execution of the workflow,
+  # determine an upper bound for HTO counts to consider
+  # by looking at results/plots/hto-counts.pdf,
+  # see https://combine-lab.github.io/alevin-fry-tutorials/2021/af-feature-bc.
+  max-hto-count: null
+  # After the second execution of the workflow,
+  # determine an upper bound for ADT counts to consider
+  # by looking at results/plots/adt-counts.pdf,
+  # see https://combine-lab.github.io/alevin-fry-tutorials/2021/af-feature-bc.
+  max-adt-count: null
